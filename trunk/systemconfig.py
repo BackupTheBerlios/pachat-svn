@@ -26,7 +26,7 @@ rtag            = "]: "
 version         = "v0.1"
 bannercolor     = "blue"
 firstmsg        = "Salut!\nAcesta este " + name + " " + version + "\nPentru ajutor scrie /help"
-url             = "http://yahoo.com"
+url             = "http://developer.berlios.de/projects/pachat/"
 msglength       = 1024
 ##### error msgs
 err01           = "Marimea maxima a mesajului este de " + str(msglength) + " caractere."
