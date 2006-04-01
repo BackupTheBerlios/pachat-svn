@@ -28,10 +28,16 @@ def extractCommands(GUIobj,com):
     for c in command:
         cs = c.strip()
         if cs[0:1] == "/":
-            doCommand(cs[1:])
+            doCommand(GUIobj,cs[1:])
             tmp_cmd.remove(c)
     return tmp_cmd
 
-def doCommand(command):
-    for cmd,func in cc.com.items():
-        print cmd + " ->" + str(func)
+def doCommand(GUIobj,command):
+    command = command.split()
+    for cmd,dowhat in cc.com.items():
+        if cmd == command[0]:
+            try:
+                for dothis in dowhat:
+                    dothis(GUIobj,command[1:])
+            except TypeError:
+                dowhat(GUIobj,command[1:])

@@ -20,5 +20,13 @@
 import commands
 
 com = dict()
-com["nick"]        = commands.nick
-com["clear"]       = commands.clear
+
+##binding multiple commands to a single function
+com["nick"]         = commands.nick
+com["n"]            = commands.nick
+
+com["clear"]        = commands.clear
+com["clr"]          = commands.clear
+
+##binding multiple functions to a single command
+com["clear&nick"]    = [commands.clear,commands.nick]
