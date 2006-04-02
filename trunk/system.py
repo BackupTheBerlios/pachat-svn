@@ -17,22 +17,26 @@
 
 ##############################################################################
 
-import handlers
+##### system wide settings
+name            = "PAchat"
+usernick        = "PAc"
+sysnick         = "System"
+ltag            = "["
+rtag            = "]: "
+version         = "v0.1"
+bannercolor     = "blue"
+firstmsg        = name + " " + version + "\nHi!\nType /help for help."
+url             = "http://developer.berlios.de/projects/pachat/"
+msglength       = 1024
 
-##### This way you can call a function with a predefined argument
-#####    ("<Enter>",lambda *args: handlers.doSomething("arg1", "arg2..." ,*args) )
+##### program msgs
+msg                     = dict()
 
-##### top banner (label)
-b        = [
-    ("<Button-1>",handlers.doInfo)
-]
+##### general error msg
+msg["err"]              = dict()
+msg["err"]["msglen"]    = "Message way to long."
 
-##### input area (entry)
-i       = [
-    ("<Return>",handlers.sendMsg)
-]
-
-##### chat widnow scroll (scrollbar)
-cs      = [
-    ("command",handlers.doScroll)
-]
+##### cmd msgs
+msg["nick"]             = dict()
+msg["nick"]["nonick"]   = "No nick given."
+msg["nick"]["changed"]  = "Nick changed."

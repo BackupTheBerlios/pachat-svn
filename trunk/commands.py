@@ -18,24 +18,26 @@
 ##############################################################################
 
 import utils
+import system
 
 ##############################################################################
 
 def clear(GUIobj,arglist=None):
     from Tkinter import END
-    widget = GUIobj.getChatWindow()
+    widget = GUIobj.chat_window
     utils.keepStateAndDo(widget, widget.delete, "0.0", widget.index(END) )
 
 ##############################################################################
 
 def nick(GUIobj,arglist=None):
-    import systemconfig
-
     if not arglist:
-        msg = "Ai uitat sa zici nickul!"
+        msg = system.msg["nick"]["nonick"]
     else:
-        systemconfig.usernick = arglist[0]
-        msg = "Noul nickname este: " + arglist[0]
-    utils.putMsg( GUIobj.getChatWindow(), msg )
+        system.usernick = arglist[0]
+        msg = system.msg["nick"]["changed"]
+    utils.putMsg( GUIobj.chat_window , msg )
 
 ##############################################################################
+
+def quitgui(GUIobj,arglist=None):
+    GUIobj.root.destroy()

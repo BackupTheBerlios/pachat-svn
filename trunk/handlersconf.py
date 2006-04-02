@@ -17,30 +17,17 @@
 
 ##############################################################################
 
-import chatconfig
+import handlers
 
-def getBanner():
-    return _getValues(chatconfig.b)
+##### This way you can call a function with a predefined argument
+#####    ("<Enter>",lambda *args: handlers.doSomething("arg1", "arg2..." ,*args) )
+##### You cand bind a single action to multiple handlers
 
-def getChatWindow():
-    return _getValues(chatconfig.c)
+##### top banner (label)
+banner      = [("<Button-1>",handlers.doInfo)]
 
-def getChatScroll():
-    return _getValues(chatconfig.cs)
+##### input area (entry)
+input_area       = [("<Return>",handlers.sendMsg)]
 
-def getInputArea():
-    return _getValues(chatconfig.i)
-
-def _getValues(var):
-
-    if not var.has_key("grid"):
-        return (var,None)
-    else:
-        if var["grid"]:
-            for key in ("column","columnspan","in","ipadx","ipady","padx","pady","row","rowspan","sticky"):
-                if not var["grid"].has_key(key):
-                    var["grid"][key] = None
-        tmp_var = var.copy()
-        grid = tmp_var["grid"]
-        del tmp_var["grid"]
-        return (tmp_var,grid)
+##### chat widnow scroll (scrollbar)
+chat_scroll      = [("command",handlers.doScroll)]

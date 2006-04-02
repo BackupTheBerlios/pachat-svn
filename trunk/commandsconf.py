@@ -17,27 +17,19 @@
 
 ##############################################################################
 
-import commandsconfig as cc
+import commands
 
-##############################################################################
+com = dict()
 
-def extractCommands(GUIobj,com):
-    command = com.split("\n")
-    tmp_cmd = command[:]
+##binding multiple functions to a single command
+##com["command"] = [commands.c1, commands.c2, commands.c3 ... ]
 
-    for c in command:
-        cs = c.strip()
-        if cs[0:1] == "/":
-            doCommand(GUIobj,cs[1:])
-            tmp_cmd.remove(c)
-    return tmp_cmd
+##binding multiple commands to a single function
+##com["command1"] = com["command2"] = commands.c
 
-def doCommand(GUIobj,command):
-    command = command.split()
-    for cmd,dowhat in cc.com.items():
-        if cmd == command[0]:
-            try:
-                for dothis in dowhat:
-                    dothis(GUIobj,command[1:])
-            except TypeError:
-                dowhat(GUIobj,command[1:])
+com["nick"] = com["N"] = commands.nick
+
+com["clear"] = com["clr"] = commands.clear
+
+com["quit"] = com["exit"] = com["close"] = com["Q"] = commands.quitgui
+

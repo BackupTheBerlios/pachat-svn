@@ -17,7 +17,7 @@
 
 ##############################################################################
 
-import systemconfig
+import system
 import utils
 
 ##############################################################################
@@ -39,11 +39,9 @@ def doScroll(event,GUIobj,*args):
 def doInfo(event,GUIobj):
     """ open the browser at the given url
     """
-
     import webbrowser
 
-    url = systemconfig.url
-
+    url = system.url
     try:
         webbrowser.open(url)
     except ImportError: # pre-webbrowser.py compatibility
@@ -64,22 +62,21 @@ def doInfo(event,GUIobj):
 def sendMsg(event,GUIobj):
     """ print the message in chatwindow and execute commands
     """
-
     from Tkinter import END
-    from commandsconfigaccess import extractCommands
 
     widget = event.widget
     msg = widget.get()
-    msg = extractCommands(GUIobj,msg)
     widget.delete(0,widget.index(END))
-    if not msg:
-        return
-
-    for m in msg:
-        m = m.rstrip()
-        if len(m) > systemconfig.msglength:
-            m = systemconfig.err01
+    lines = msg.split("\n")
+    for line in lines:
+        strip_line = line.strip()
+        if strip_line[0:1] == "/":
+            utils.doCommand(GUIobj,strip_line[1:])
         else:
-            nick = utils.makeNick(systemconfig.usernick)
-            m = nick + m
-        utils.putMsg( GUIobj.getChatWindow(), m)
+            plain_msg = line.rstrip()
+            if len(plain_msg) > system.msglength:
+                plain_msg = system.msg["err"]["msglen"]
+            else:
+                nick = utils.makeNick(system.usernick)
+                plain_msg = nick + plain_msg
+            utils.putMsg(GUIobj.chat_window, plain_msg)

@@ -17,16 +17,13 @@
 
 ##############################################################################
 
-import systemconfig
+import system
 
 ##############################################################################
 
 def putMsg(widget,msg):
     from Tkinter import END
-
-    if not msg:
-        return
-
+    if not msg: return
     keepStateAndDo( widget, widget.insert, widget.index(END), msg+"\n")
     widget.see(widget.index(END))
 
@@ -44,4 +41,18 @@ def keepStateAndDo(widget,action,*args):
 ##############################################################################
 
 def makeNick(nick):
-    return systemconfig.ltag + nick + systemconfig.rtag
+    return system.ltag + nick + system.rtag
+
+##############################################################################
+
+def doCommand(GUIobj,command):
+    import commandsconf
+    command = command.split()
+    for cmd,dowhat in commandsconf.com.items():
+        if cmd == command[0]:
+            if type(dowhat) is list:
+                for dothis in dowhat:
+                    dothis(GUIobj,command[1:])
+            else:
+                dowhat(GUIobj,command[1:])
+            break

@@ -20,6 +20,6 @@
 def doStartup(GUIobj):
 
     import utils
-    import systemconfig
+    import system
 
-    utils.putMsg(GUIobj.getChatWindow(), systemconfig.firstmsg)
+    utils.putMsg(GUIobj.chat_window, system.firstmsg)

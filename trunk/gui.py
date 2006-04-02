@@ -29,31 +29,31 @@ class GUI:
         """ rendering and binding a simple GUI
         """
 
-        import chatconfigaccess as chat_config
-        import bindingsconfigaccess as bindings_config
+        from guiconf import GUIConf as gui_config
+        import handlersconf as handlers_config
 
         ##### top banner (label)
         self.banner = Label(self.root)
-        self._renderWidget( self.banner, chat_config.getBanner() )
-        self._doBindings( self.banner, bindings_config.getBanner() )
+        self._renderWidget( self.banner, gui_config.banner )
+        self._doBindings( self.banner, handlers_config.banner )
 
         ##### chat window (text)
         self.chat_window = Text(self.root)
-        self._renderWidget( self.chat_window, chat_config.getChatWindow() )
+        self._renderWidget( self.chat_window, gui_config.chat_window )
 
         ##### chat widnow scroll (scrollbar)
-        ##### this is the way we bind command; nice, right?
+        ##### this is the way we bind commands; nice, right?
         self.chat_scroll = Scrollbar(self.root, command=lambda *args:
-                                                 self._commandHandler( bindings_config.getChatScroll(), *args ) )
+                                                 self._commandHandler( handlers_config.chat_scroll, *args ) )
 
-        self._renderWidget( self.chat_scroll, chat_config.getChatScroll() )
+        self._renderWidget( self.chat_scroll, gui_config.chat_scroll )
         self.chat_window["yscrollcommand"] = self.chat_scroll.set
 
         ##### input area (entry)
         self.input_area = Entry(self.root)
-        self._renderWidget( self.input_area, chat_config.getInputArea() )
+        self._renderWidget( self.input_area, gui_config.input_area )
         self.input_area.focus_force()
-        self._doBindings( self.input_area, bindings_config.getInputArea() )
+        self._doBindings( self.input_area, handlers_config.input_area )
 
         ##### startup script
         from startup import doStartup
@@ -101,19 +101,6 @@ class GUI:
             )
         else:
             widget.grid()
-
-    ##### access functions, nothing fancy
-    def getBanner(self):
-        return self.banner
-
-    def getChatWindow(self):
-        return self.chat_window
-
-    def getChatScroll(self):
-        return self.chat_scroll
-
-    def getInputArea(self):
-        return self.input_area
 
 ##### main program
 def run():
