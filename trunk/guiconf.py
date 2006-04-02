@@ -36,7 +36,7 @@ class _conf:
     c["background"]             = "white"
     c["selectbackground"]       = "#000"
     c["selectforeground"]       = "#FFF"
-    c["font"]                   = ("Courier",10)
+    c["font"]                   = ("Verdana",9)
     c["selectborderwidth"]      = 0
     c["takefocus"]              = -1
     c["padx"]                   = 5
@@ -69,7 +69,7 @@ class _conf:
     i["selectbackground"]       = "#FFF"
     i["selectforeground"]       = "#000"
     i["relief"]                 = "flat"
-    i["font"]                   = ("Courier",10)
+    i["font"]                   = ("Verdana",9)
     i["selectborderwidth"]      = 0
     i["grid"]                   = dict()
     i["grid"]["row"]            = 2

@@ -17,30 +17,25 @@
 
 ##############################################################################
 
-##### system wide settings
-name            = "PAchat"
-usernick        = "PAc"
-sysnick         = "System"
-ltag            = "["
-rtag            = "]: "
-version         = "v0.1"
-bannercolor     = "blue"
-firstmsg        = name + " " + version + "\nHi!\nType /help for help."
-url             = "http://developer.berlios.de/projects/pachat/"
-msglength       = 1024
-minwidth        = 300
-minheight       = 200
-defsize         = "400x350"
+##### main program
+def run():
+    from gui import GUI
+    from Tkinter import Tk
+    import system
 
-##### program msgs
-msg                     = dict()
+    """ starting the interface
+    """
+    root = Tk()
+    root.columnconfigure(0,weight=1)
+    root.rowconfigure(1,weight=1)
+    root.title(system.name + " " + system.version)
+    root.minsize(width= system.minwidth , height=system.minheight)
+    root.geometry(system.defsize)
 
-##### general error msg
-msg["err"]              = dict()
-msg["err"]["msglen"]    = "Message way to long! Max length is {msglen}"
-msg["err"]["badcmd"]    = "Unknown command {badcmd}"
+    gui = GUI(root)
+    gui.makeGUI()
 
-##### cmd msgs
-msg["nick"]             = dict()
-msg["nick"]["nonick"]   = "No nick given"
-msg["nick"]["changed"]  = "New nick is {nick}"
+    root.mainloop()
+
+if __name__ == "__main__":
+    run()
