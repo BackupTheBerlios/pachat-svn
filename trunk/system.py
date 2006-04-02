@@ -34,9 +34,10 @@ msg                     = dict()
 
 ##### general error msg
 msg["err"]              = dict()
-msg["err"]["msglen"]    = "Message way to long."
+msg["err"]["msglen"]    = "Message way to long! Max length is {msglen}"
+msg["err"]["badcmd"]    = "Unknown command {badcmd}"
 
 ##### cmd msgs
 msg["nick"]             = dict()
-msg["nick"]["nonick"]   = "No nick given."
-msg["nick"]["changed"]  = "Nick changed."
+msg["nick"]["nonick"]   = "No nick given"
+msg["nick"]["changed"]  = "New nick is {nick}"

@@ -75,7 +75,7 @@ def sendMsg(event,GUIobj):
         else:
             plain_msg = line.rstrip()
             if len(plain_msg) > system.msglength:
-                plain_msg = system.msg["err"]["msglen"]
+                plain_msg = system.msg["err"]["msglen"].replace("{msglen}",str(system.msglength))
             else:
                 nick = utils.makeNick(system.usernick)
                 plain_msg = nick + plain_msg

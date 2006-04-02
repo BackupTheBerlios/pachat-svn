@@ -34,7 +34,7 @@ def nick(GUIobj,arglist=None):
         msg = system.msg["nick"]["nonick"]
     else:
         system.usernick = arglist[0]
-        msg = system.msg["nick"]["changed"]
+        msg = system.msg["nick"]["changed"].replace("{nick}", arglist[0])
     utils.putMsg( GUIobj.chat_window , msg )
 
 ##############################################################################

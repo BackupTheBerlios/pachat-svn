@@ -49,10 +49,14 @@ def doCommand(GUIobj,command):
     import commandsconf
     command = command.split()
     for cmd,dowhat in commandsconf.com.items():
+        cmd_found = 0
         if cmd == command[0]:
+            cmd_found = 1
             if type(dowhat) is list:
                 for dothis in dowhat:
                     dothis(GUIobj,command[1:])
             else:
                 dowhat(GUIobj,command[1:])
             break
+    if not cmd_found:
+        putMsg(GUIobj.chat_window, system.msg["err"]["badcmd"].replace("{badcmd}",command[0]))
