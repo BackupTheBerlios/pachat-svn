@@ -26,7 +26,7 @@ def doScroll(event,GUIobj,*args):
     """ make the scroll scrolling :)
     """
 
-    widget = GUIobj.getChatWindow()
+    widget = GUIobj.chat_window
     op, howMany = args[0], args[1]
     if op == "scroll":
         units  =  args[2]
