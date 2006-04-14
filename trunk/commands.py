@@ -41,3 +41,25 @@ def nick(GUIobj,arglist=None):
 
 def quitgui(GUIobj,arglist=None):
     GUIobj.root.destroy()
+
+##############################################################################
+
+def connect(GUIobj,arglist=None):
+    if not arglist:
+        utils.putMsg(GUIobj.chat_window, system.msg["connect"]["noip"])
+        return
+    port = system.connport
+    ipport = arglist[0].split(":",1)
+    ip = ipport[0]
+    if len(ipport) > 1:
+        try:
+            port = int(ipport[1])
+        except ValueError:
+            msg = system.msg["connect"]["badport"].replace("{badport}",ipport[1])
+            utils.putMsg( GUIobj.chat_window, msg )
+            return
+    import socket
+    sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+    sock.connect((ip,port))
+    sock.setblocking(0)
+    GUIobj.chatsockets.addConnection(sock)

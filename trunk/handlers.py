@@ -72,11 +72,14 @@ def sendMsg(event,GUIobj):
         strip_line = line.strip()
         if strip_line[0:1] == "/":
             utils.doCommand(GUIobj,strip_line[1:])
+            return
         else:
             plain_msg = line.rstrip()
             if len(plain_msg) > system.msglength:
                 plain_msg = system.msg["err"]["msglen"].replace("{msglen}",str(system.msglength))
-            else:
-                nick = utils.makeNick(system.usernick)
-                plain_msg = nick + plain_msg
-            utils.putMsg(GUIobj.chat_window, plain_msg)
+                utils.putMsg(GUIobj.chat_window, plain_msg)
+                return
+        nick = utils.makeNick(system.usernick)
+        plain_msg = nick + plain_msg
+        GUIobj.chatsockets.broadcastMsg(plain_msg)
+        utils.putMsg(GUIobj.chat_window, plain_msg)    

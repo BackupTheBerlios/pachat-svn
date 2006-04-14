@@ -17,9 +17,12 @@
 
 ##############################################################################
 
-def doStartup(GUIobj):
+class doStartup:
 
-    import utils
-    import system
+    def __init__(self,GUIobj):
 
-    utils.putMsg(GUIobj.chat_window, system.firstmsg)
+        import utils
+        import system
+
+        utils.putMsg(GUIobj.chat_window, system.firstmsg)
+

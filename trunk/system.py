@@ -31,16 +31,27 @@ msglength       = 1024
 minwidth        = 300
 minheight       = 200
 defsize         = "400x350"
+listenport      = 7777
+connport        = 7777
+msglensize      = 4
+
+##### sockets and threading
+workers         = 2
+queuetimeout    = 1
+selecttimeout   = 0.05
 
 ##### program msgs
 msg                     = dict()
 
 ##### general error msg
 msg["err"]              = dict()
-msg["err"]["msglen"]    = "Message way to long! Max length is {msglen}"
-msg["err"]["badcmd"]    = "Unknown command {badcmd}"
+msg["err"]["msglen"]    = "Message way to long! Max length is {msglen}."
+msg["err"]["badcmd"]    = "Unknown command {badcmd}."
 
 ##### cmd msgs
-msg["nick"]             = dict()
-msg["nick"]["nonick"]   = "No nick given"
-msg["nick"]["changed"]  = "New nick is {nick}"
+msg["nick"]                 = dict()
+msg["nick"]["nonick"]       = "No nick given."
+msg["nick"]["changed"]      = "New nick is {nick}."
+msg["connect"]              = dict()
+msg["connect"]["noip"]      = "No ip/hostname given."
+msg["connect"]["badport"]   = "Bad port {badport}."

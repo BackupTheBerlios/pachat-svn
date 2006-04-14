@@ -19,12 +19,13 @@
 
 ##### main program
 def run():
+    """ starting the interface
+    """
+
     from gui import GUI
     from Tkinter import Tk
     import system
 
-    """ starting the interface
-    """
     root = Tk()
     root.columnconfigure(0,weight=1)
     root.rowconfigure(1,weight=1)

@@ -55,9 +55,14 @@ class GUI:
         self.input_area.focus_force()
         self._doBindings( self.input_area, handlers_config.input_area )
 
+        ##### sockets
+        import chatsockets
+        self.chatsockets = chatsockets.ChatSockets(self.chat_window)
+        self.chatsockets.start()
+
         ##### startup script
         from startup import doStartup
-        doStartup(self)
+        self.startup = doStartup(self)
 
     def _doBindings(self,widget,ehlist):
         """ binding events to handlers configured in ehlist
@@ -101,3 +106,7 @@ class GUI:
             )
         else:
             widget.grid()
+
+    def __del__(self):
+        self.chatsockets.die()
+        self.chatsockets.join()
