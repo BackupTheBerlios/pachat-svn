@@ -108,5 +108,5 @@ class GUI:
             widget.grid()
 
     def __del__(self):
-        self.chatsockets.die()
+        self.chatsockets.killThreads()
         self.chatsockets.join()

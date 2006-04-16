@@ -27,18 +27,18 @@ version         = "v0.1"
 bannercolor     = "blue"
 firstmsg        = name + " " + version + "\nHi!\nType /help for help."
 url             = "http://developer.berlios.de/projects/pachat/"
-msglength       = 1024
+msglength       = 1020
 minwidth        = 300
 minheight       = 200
 defsize         = "400x350"
 listenport      = 7777
 connport        = 7777
-msglensize      = 4
+msglensize      = 10
 
 ##### sockets and threading
 workers         = 2
 queuetimeout    = 1
-selecttimeout   = 0.05
+selecttimeout   = 0.2
 
 ##### program msgs
 msg                     = dict()

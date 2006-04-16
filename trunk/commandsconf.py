@@ -34,3 +34,4 @@ com["clear"] = com["clr"] = commands.clear
 com["quit"] = com["exit"] = com["close"] = com["Q"] = commands.quitgui
 
 com["connect"] = com["C"] = commands.connect
+

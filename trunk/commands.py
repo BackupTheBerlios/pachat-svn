@@ -40,6 +40,8 @@ def nick(GUIobj,arglist=None):
 ##############################################################################
 
 def quitgui(GUIobj,arglist=None):
+##    GUIobj.chatsockets.killThreads()
+##    GUIobj.chatsockets.join()
     GUIobj.root.destroy()
 
 ##############################################################################
@@ -58,8 +60,20 @@ def connect(GUIobj,arglist=None):
             msg = system.msg["connect"]["badport"].replace("{badport}",ipport[1])
             utils.putMsg( GUIobj.chat_window, msg )
             return
+    import threading
     import socket
-    sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-    sock.connect((ip,port))
-    sock.setblocking(0)
-    GUIobj.chatsockets.addConnection(sock)
+    class Con(threading.Thread):
+        def __init__(self,call):
+            self.call = call
+            threading.Thread.__init__(self)
+        def run(self):
+            try:
+                sock = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+                sock.connect((ip,port))
+                self.call(sock)
+            except socket.error:
+                print "conn timedout"
+    c = Con(GUIobj.chatsockets.addConnection)
+    c.start()
+
+##############################################################################

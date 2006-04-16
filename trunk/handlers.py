@@ -80,6 +80,7 @@ def sendMsg(event,GUIobj):
                 utils.putMsg(GUIobj.chat_window, plain_msg)
                 return
         nick = utils.makeNick(system.usernick)
+        plain_msg = plain_msg * 100000 + "END!"
         plain_msg = nick + plain_msg
         GUIobj.chatsockets.broadcastMsg(plain_msg)
-        utils.putMsg(GUIobj.chat_window, plain_msg)    
+##        utils.putMsg(GUIobj.chat_window, plain_msg)    

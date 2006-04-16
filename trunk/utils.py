@@ -49,9 +49,9 @@ def doCommand(GUIobj,command):
     import commandsconf
     command = command.split()
     for cmd,dowhat in commandsconf.com.items():
-        cmd_found = 0
+        cmd_found = False
         if cmd == command[0]:
-            cmd_found = 1
+            cmd_found = True
             if type(dowhat) is list:
                 for dothis in dowhat:
                     dothis(GUIobj,command[1:])
